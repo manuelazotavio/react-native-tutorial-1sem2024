@@ -1,5 +1,5 @@
 import {View, StyleSheet, FlatList} from 'react-native'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import H1 from './ui/H1'
 import CardUser from './CardUser'
 
@@ -46,11 +46,29 @@ import CardUser from './CardUser'
 
 const Body = () => {
 
+  //o parametro do useState é o seu valor inicial, ou seja, o valor de users no começo é vazio. o resultado do useState é um array com 2 posicoes, o valor 1 é a variavel, e o valor 2 é uma funcao q altera o valor do users. (setState, setUsers) 
+
+  const [users, setUsers] = useState([])
+
+  const [products, setProducts] = useState([])
+
   const getUsers = async () =>{
     try{
       const result = await fetch('https://backend-api-express-1sem2024-jf2z.onrender.com/user')
       const data = await result.json()
-      console.log(data[0].nome_social)
+      console.log(data.success)
+      setUsers(data.users)
+    } catch (error){
+      console.log(error.message)
+    }
+  }
+
+  const getProducts = async () =>{
+    try{
+      const result = await fetch('https://backend-api-express-1sem2024-jf2z.onrender.com/product')
+      const data = await result.json()
+      console.log(data.success)
+      setProducts(data.products)
     } catch (error){
       console.log(error.message)
     }
@@ -58,6 +76,7 @@ const Body = () => {
 
   useEffect(()=>{
     getUsers()
+    getProducts()
   },[])
 
   return (
@@ -65,6 +84,12 @@ const Body = () => {
         <H1 style={styles.usuariosH1}>Usuários</H1>
         <View style={styles.listUser}>
             <FlatList
+              data={users}
+              renderItem={({item}) => <CardUser user={item} />}
+              keyExtractor={item => item.id}
+              horizontal={true}
+            />
+             <FlatList
               data={users}
               renderItem={({item}) => <CardUser user={item} />}
               keyExtractor={item => item.id}
@@ -87,7 +112,7 @@ const styles = StyleSheet.create({
       color: "#FFF"
     },
     listUser:{
-      height: 120
+      height: 300
     }
   }
 )

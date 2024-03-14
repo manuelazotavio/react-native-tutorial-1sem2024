@@ -9,7 +9,7 @@ export default function App() {
     <View style={styles.container}>
       <ImageBackground 
         resizeMode="cover"
-        source={require('./assets/images/bg-mobile.jpg')}
+        source={require('./assets/images/fundo.jpg')}
         style={styles.bg}
       >
         <Header />
