@@ -1,7 +1,8 @@
-import {View, StyleSheet, FlatList} from 'react-native'
+import {View, StyleSheet, FlatList, Text} from 'react-native'
 import { useEffect, useState } from 'react'
 import H1 from './ui/H1'
 import CardUser from './CardUser'
+import CardProduct from './CardProduct'
 
 // const users = [
 //   {
@@ -83,19 +84,27 @@ const Body = () => {
     <View style={styles.body}>
         <H1 style={styles.usuariosH1}>Usuários</H1>
         <View style={styles.listUser}>
-            <FlatList
+          {users.length ?  <FlatList
               data={users}
               renderItem={({item}) => <CardUser user={item} />}
               keyExtractor={item => item.id}
               horizontal={true}
-            />
-             <FlatList
-              data={users}
-              renderItem={({item}) => <CardUser user={item} />}
-              keyExtractor={item => item.id}
-              horizontal={true}
-            />
+            /> : <Text>Carregando...</Text>}
+           
+            
         </View>
+        <H1 style={styles.usuariosH1}>Produtos</H1>
+        <View style={styles.listProduct}>
+          {products.length ?  <FlatList
+              data={products}
+              renderItem={({item}) => <CardProduct product={item} />}
+              keyExtractor={item => item.id}
+              horizontal={true}
+            /> : <Text>Carregando...</Text>}
+         
+        </View> 
+             
+       
     </View>
   )
 }
@@ -112,7 +121,12 @@ const styles = StyleSheet.create({
       color: "#FFF"
     },
     listUser:{
-      height: 300
+      height: 120,
+      
+    },
+    listProduct:{
+      height: 120,
+     
     }
   }
 )
