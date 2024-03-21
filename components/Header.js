@@ -7,10 +7,10 @@ const Header = () => {
 			<View style={styles.avatar}>
 				<Image
 					style={styles.avatarImg}
-					source='https://avatars.githubusercontent.com/u/4259630?v=4'
+					source='https://i.pinimg.com/564x/b3/7d/26/b37d261a35f3efd588e60e27053ffdbd.jpg'
 				/>
 			</View>
-			<Text style={styles.boasvindas}>Renan Cavichi</Text>
+			<Text style={styles.boasvindas}>Drake</Text>
 		</View>
 	)
 }
@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingTop: 20
   },
 	avatar: {
     width: 50,
