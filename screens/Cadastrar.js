@@ -13,7 +13,7 @@ const Cadastrar = () => {
 
   const postUser = async () =>{
     try{
-      const result = await fetch('https://backend-api-express-1sem2024-rbd1.onrender.com/user', {
+      const result = await fetch('https://backend-api-express-1sem2024-jf2z.onrender.com/user', {
         method: "POST",
         headers:{
           "Content-Type": "application/json"
@@ -22,11 +22,16 @@ const Cadastrar = () => {
       })
       const data = await result.json()
       console.log(data)
-      setUsers([data.user, ...users])
-      console.log(users)
-      navigation.goBack()
+      if(data?.success){
+         setUsers([data.user, ...users])
+         navigation.goBack()
+      } else {
+        alert(data.error)
+      }
+      
     } catch (error){
       console.log('Error postUser ' + error.message)
+      alert(error.message)
     }
   } 
 

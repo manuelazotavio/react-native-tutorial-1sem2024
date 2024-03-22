@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, ImageBackground, ScrollView} from 'react-native'
-import Header from '../components/Header'
+import { StyleSheet, ImageBackground, View} from 'react-native'
+
 import Body from '../components/Body'
 
 export default function ListUserScreen() {

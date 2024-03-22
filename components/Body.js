@@ -43,7 +43,7 @@ const Body = () => {
 
   const navigation = useNavigation()
   return (
-    <View>
+    <View style={{flex: 1}}>
       <View style={styles.add}>
         <H1 style={styles.usuariosH1}>Usuários</H1>
         <View>
@@ -91,11 +91,12 @@ const styles = StyleSheet.create({
 
   },
   add:{
-    flex: 1,
+    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingRight: 30,
-    paddingTop: 20
+    paddingTop: 20,
+    alignItems: 'center'
   },
   flatList:{
     alignSelf: 'center'

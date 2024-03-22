@@ -1,9 +1,13 @@
-import {Text, View, StyleSheet} from 'react-native'
+import {Text, View, StyleSheet, Pressable} from 'react-native'
 import { Image } from 'expo-image'
 import H4 from './ui/H4'
+import { useNavigation } from '@react-navigation/native'
 
 const CardUser = ({user}) => {
+
+    const navigation = useNavigation()
   return (
+    <Pressable onPress={() => navigation.navigate('Editar', {user}) }>
     <View style={styles.card}>
         <View style={styles.avatar}>
             <Image
@@ -16,6 +20,7 @@ const CardUser = ({user}) => {
             <Text style={styles.email}>{user.email}</Text>
         </View>
     </View>
+    </Pressable>
   )
 }
 
