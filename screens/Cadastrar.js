@@ -23,6 +23,7 @@ const Cadastrar = () => {
       const data = await result.json()
       console.log(data)
       setUsers([data.user, ...users])
+      console.log(users)
       navigation.goBack()
     } catch (error){
       console.log('Error postUser ' + error.message)

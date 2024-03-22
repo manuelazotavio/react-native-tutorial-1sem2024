@@ -4,12 +4,14 @@ import {
   StyleSheet,
   FlatList,
   Text,
-  Button
+  Button,
+  Platform
 } from "react-native";
 import { useEffect, useState } from "react";
 import H1 from "./ui/H1";
 import CardUser from "./CardUser";
 import { useNavigation } from "@react-navigation/native";
+import { Header } from "./Header";
 
 
 
@@ -17,6 +19,8 @@ const Body = () => {
   //o parametro do useState é o seu valor inicial, ou seja, o valor de users no começo é vazio. o resultado do useState é um array com 2 posicoes, o valor 1 é a variavel, e o valor 2 é uma funcao q altera o valor do users. (setState, setUsers)
 
   const [users, setUsers] = useState([]);
+
+  console.log('Plataforma atual:', Platform.OS)
 
   const getUsers = async () => {
     try {
@@ -52,9 +56,12 @@ const Body = () => {
       <View style={styles.listUser}>
         {users.length ? (
           <FlatList
+            style={styles.flatList}
             data={users}
             renderItem={({ item }) => <CardUser user={item} />}
             keyExtractor={(item) => item.id}
+            ListHeaderComponent={Header}
+            contentContainerStyle={styles.flatList}
           />
         ) : (
           <Text>Carregando...</Text>
@@ -78,15 +85,10 @@ const styles = StyleSheet.create({
   listUser: {
     width: "100%",
     alignItems: 'center',
-    display: 'flex'
-  },
-  input: {
-    height: 40,
-    width: 300,
-    backgroundColor: '#FFF',
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
+    display: 'flex',
+    marginBottom: 20,
+    maxHeight: Platform.OS === 'web' ? '90vh' : null
+
   },
   add:{
     flex: 1,
@@ -94,6 +96,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingRight: 30,
     paddingTop: 20
+  },
+  flatList:{
+    alignSelf: 'center'
+
   }
 });
 

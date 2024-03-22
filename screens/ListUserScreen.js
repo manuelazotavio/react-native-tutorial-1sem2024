@@ -1,21 +1,21 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, SectionList, ImageBackground} from 'react-native'
+import { StyleSheet, View, ImageBackground, ScrollView} from 'react-native'
 import Header from '../components/Header'
 import Body from '../components/Body'
 
 export default function ListUserScreen() {
   return (
-    <SectionList style={styles.container}>
+    <View style={styles.container}>
       <ImageBackground 
         resizeMode="cover"
         source={require('../assets/images/fundo.jpg')}
         style={styles.bg}
       >
-        <Header />
+
         <Body />
       </ImageBackground>
-      <StatusBar style="light" />
-    </SectionList>
+      <StatusBar style="dark" />
+    </View>
   );
 }
 
