@@ -83,7 +83,7 @@ const Editar = () => {
        
           <Button style={styles.botao} title="Editar Usuário" onPress={editUser} />
 
-          <Button style={{paddingTop: 20}} title="Excluir Usuário" onPress={removeUser} />
+          <Button  title="Excluir Usuário" onPress={removeUser} />
        
         
       </View>
