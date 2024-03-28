@@ -1,6 +1,7 @@
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { View, Text, StyleSheet, Button, TextInput, ScrollView } from "react-native"
 import { useState } from "react"
+import H1 from "../components/ui/H1"
 
 const Cadastrar = () => {
   const [txtName, setTxtName] = useState('')
@@ -38,6 +39,8 @@ const Cadastrar = () => {
   return (
 
     <ScrollView>
+      <H1>Cadastrar User</H1>
+      <Button title="Voltar" onPress={() => navigation.goBack()}/>
       <View style={styles.form}>
         
         <TextInput

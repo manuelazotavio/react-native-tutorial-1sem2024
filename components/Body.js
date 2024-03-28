@@ -56,7 +56,7 @@ const Body = () => {
       <View style={styles.listUser}>
         {users.length ? (
           <FlatList
-            style={styles.flatList}
+            style={{width: '100%'}}
             data={users}
             renderItem={({ item }) => <CardUser user={item} />}
             keyExtractor={(item) => item.id}
