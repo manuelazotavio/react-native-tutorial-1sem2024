@@ -1,0 +1,9 @@
+node.js => framework, recursos q o node me da para criar um ambiente. navegador é um ambiente, que me da funcoes como alert, windows, etc.
+
+react => biblioteca/lib para web e nativo, com o ambiente em node.js, rodado em navegador (build q traz index,html, um arquivo js e um css para rodar em um ambiente web). baseado em components que sao funcoes, q retornam um JSX que constroi uma parte da tela.
+
+react native => react para desenvolvimento de aplicativos tanto para IOS quanto para android.
+
+qual a diferença entre react native e react dom? react native é o core do react + a biblioteca q da a parte do native. já o react web, seria o react core + o react dom.
+
+
