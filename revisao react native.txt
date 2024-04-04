@@ -7,3 +7,82 @@ react native => react para desenvolvimento de aplicativos tanto para IOS quanto 
 qual a diferença entre react native e react dom? react native é o core do react + a biblioteca q da a parte do native. já o react web, seria o react core + o react dom.
 
 
+criação de projeto com react native => CLI: uma configuração manual de ambiente de desenvolvimento, para pessoas mais experientes. 
+EXPO GO: um ecossistema q cria automaticamente um ambiente, é prático, para pessoas q estao começando.
+
+COMANDO: npx create-expo-app NomeDoProjeto
+cd NomeDoProjeto
+npx expo start
+
+components => uma função q pode ser arrow ou nao, para fazer um component no react native, preciso importar View, Text e etc do proprio react-native
+
+para usar o destructing ao inves do props, no parametro do meu componente posso colocar as minhas propriedades
+ex: function Blabla({nome, email})
+
+components nativos: TextInput, Pressable, Image, FlatList, Button, StyleSheet
+
+flatList: passo uma serie de atributos, como o renderItem com cada um dos itens a serem renderizados.
+
+ESTILO => const styles = styleSheet.create({
+objetos com o meu css
+
+
+)
+
+=========== HOOKS ===========
+vem do core do react.
+
+USEEFFECT => observa um estado, e quando esse estado mudar de valor, o useEffect vai disparar a função que está dentro dele. seu primeiro parametro é a função, o que vai acontecer quando meu state mudar. o segundo parametro é um array com o que eu quero observar. quando vazio, o meu useEffect vai funcionar toda vez que o meu componente montar pela primeira vez.
+
+USESTATE => 
+
+const [valor, setValor] = useState()
+
+valor é a minha variavel, setValor é o metodo/funcao q muda essa variavel. toda vez q o setValor é chamado, o componente é remontado.
+
+dentro do useState() eu coloco o meu valor inicial.
+
+======= NAVIGATION ========
+
+react navigation é uma biblioteca para fazer navegação entre telas do react native. existe 3 formas principais para fazer navegação:
+
+stack => empilhamento de telas, como se estivesse uma tela em cima da outra. 
+
+tab => icones no inferior da tela.
+
+drawer => um menu na lateral com o nome das telas.
+
+1º importar o navigationContainer
+
+o meu App() começa e termina com o navigationContainer.
+
+para criar o stack, preciso usar a função createNativeStackNavigator()
+
+Posso usar o Stack.Navigator, e dentro dele o Stack.Screen
+
+no stack.Screen preciso passar um name="", ele vai ser o ID, que vai usado na navegacao 
+
+e alem do name, preciso chamar um component={} passando dentro dele o nome do meu componente que é a minha tela.
+
+
+
+A mesma coisa acontece com o tab.
+
+Posso mudar o icone da tab, com o tabBarIcon nas options.
+
+dentro dos meus componentes, eu vou importar o useNavigation.
+
+crio uma const chamada navigation
+
+e dentro de botoes, por exemplo, eu uso o navigation.navigate('Editar', {user}.) === passo esse navigation.navigate com uma funcao anonima
+o {user} seria passado para a tela editar.
+
+uso o useRoute para pegar parametros, criando um obj route. que quer dizer a rota q eu estou atualmente
+
+crio uma const para o meu parametro. ex: const {user} = route.params
+
+
+
+
+
+
