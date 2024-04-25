@@ -7,6 +7,7 @@ const Cadastrar = () => {
   const [txtName, setTxtName] = useState('')
   const [txtEmail, setTxtEmail] = useState('')
   const [txtAvatar, setTxtAvatar] = useState('')
+  const [txtPass, setTxtPass] = useState('')
 
   const navigation = useNavigation()
 
@@ -19,7 +20,7 @@ const Cadastrar = () => {
         headers:{
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({name: txtName, email: txtEmail, avatar: txtAvatar})
+        body: JSON.stringify({name: txtName, email: txtEmail,pass: txtPass, avatar: txtAvatar })
       })
       const data = await result.json()
       console.log(data)
@@ -57,11 +58,18 @@ const Cadastrar = () => {
         />
         <TextInput
           style={styles.input}
+          onChangeText={setTxtPass}
+          value={txtPass}
+          placeholder="Digite sua senha"
+        />
+       
+        <TextInput
+          style={styles.input}
           onChangeText={setTxtAvatar}
           value={txtAvatar}
           placeholder="Digite seu Avatar"
         />
-       
+         
           <Button style={styles.botao} title="Cadastrar Usuário" onPress={postUser} />
        
         
