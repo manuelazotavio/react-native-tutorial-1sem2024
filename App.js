@@ -1,41 +1,75 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import ListUserScreen from "./screens/ListUserScreen";
-import Cadastrar from "./screens/Cadastrar";
-import Editar from "./screens/Editar";
-import { Text } from "react-native";
+// import { StatusBar } from 'expo-status-bar'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+//import { createDrawerNavigator } from '@react-navigation/drawer'
+import { Feather } from '@expo/vector-icons'
+import ListUserScreen from './screens/ListUserScreen.js'
+import Cadastrar from './screens/Cadastrar.js'
+import Products from './screens/Products.js'
+import Editar from './screens/Editar'
 
-// navegacao só por clicks
-// const Stack = createNativeStackNavigator();
-
-// const Drawer = createDrawerNavigator()
-
-const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator()
+const Tab = createBottomTabNavigator()
+//const Drawer = createDrawerNavigator()
 
-export default function App() {
-
-  
+const UserNavigator = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Usuários" component={ListUserScreen} />
-        <Stack.Screen 
+    <Stack.Navigator>
+      <Stack.Screen name="Principal" component={ListUserScreen} />
+      <Stack.Screen
         name="Cadastrar"
         component={Cadastrar}
-         />
-        <Stack.Screen name="Editar" component={Editar} />
-      </Stack.Navigator>
+        options={{
+          title: "Cadastrar User",
+          headerShown: false
+        }}
+      />
+      <Stack.Screen
+        name="Editar"
+        component={Editar}
+        options={{
+          headerStyle: { backgroundColor: '#000' },
+          headerTitleStyle: { color: "#FFF", },
+          headerTintColor: "#FFF"
+        }} />
+    </Stack.Navigator>
+  )
+}
 
-      <Tab.Navigator>
-        <Tab.Screen name="Usuários" component={ListUserScreen} />
-        <Tab.Screen name="Cadastrar" component={Cadastrar} />
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator screenOptions={{
+        headerStyle: { backgroundColor: '#000' },
+        headerTitleStyle: { color: "#FFF" },
+        tabBarShowLabel: false
+      }}>
+        <Tab.Screen
+          name="Users"
+          component={UserNavigator}
+          options={{
+            headerShown: false,
+            tabBarIcon: () => (
+              <Feather name="home" color={{color: "#000"}} size={25} />
+            )
+          }}
+        />
+        <Tab.Screen name="Products" component={Products} options={{
+          tabBarIcon: () => (
+            <Feather name="shopping-cart" size={24} color="black" />
+          )
+        }}/>
+        <Tab.Screen name="Teste" component={Products} options={{
+          tabBarIcon: () => (
+            <Feather name="user" size={24} color="black" />
+          )
+        }} />
       </Tab.Navigator>
       {/* <Drawer.Navigator>
-    //     <Drawer.Screen name="Usuários" component={ListUserScreen} />
-    //     <Drawer.Screen name="Cadastrar" component={Cadastrar} />
-    //   </Drawer.Navigator> */}
+        <Drawer.Screen name="Principal" component={ListUser} />
+        <Drawer.Screen name="Cadastrar" component={Cadastrar} />
+      </Drawer.Navigator> */}
     </NavigationContainer>
-  );
+  )
 }

@@ -1,16 +1,31 @@
 import {View, Text, StyleSheet} from 'react-native'
 import Button from '../components/ui/Button.js'
-import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useEffect, useState } from 'react'
 
 const Products = () => {
+    const [nameUser, setNameUser] = useState()
 
-    const navigation = useNavigation()
+    const getAS = async (data) => {
+        return await AsyncStorage.getItem(data)
+    }
+
+    useEffect( async () => {
+        const nome = await getAS('nome')
+        setNameUser(nome)
+    }, [])
+ 
+    const saveAS =  async (data, value) => {
+        await AsyncStorage.setItem(data, value)
+        console.log(data, value)
+    }
 
   return (
     <View style={styles.container}>
-      <Text>Products</Text>
-        <Button title="Cadastrar User" 
-        onPress={() => navigation.navigate('Cadastrar')}
+      <Text>Exemplo AsyncStorage</Text>
+      <Text>Nome Salvo: {nameUser}</Text>
+        <Button title="Cadastrar Nome User" 
+        onPress={() => saveAS('nome', 'manu')}
         />
     </View>
   )
