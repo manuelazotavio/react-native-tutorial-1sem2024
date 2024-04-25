@@ -1,0 +1,75 @@
+ambiente do backend com express => roda com linguagem javascript no ambiente node
+
+NPM => node package manager, serve para gerenciar as dependencias do projeto, configurar algumas coisas, por exemplo se quero usar o import ou require e determinar os scripts
+
+CLI => comand line interface, o que rodamos no terminal na linha de comando.
+
+NPM init => inicia o projeto node, mostrando o nome do projeto, quem é o autor, etc. quando termina, gera o package json.
+type: module serve para usarmos import ao inves de require.
+
+NPM i => instala todos os pacotes nao instalados
+
+npm uninstall => desinstalar algum pacote, pode ser retirando o nome dele do package json também
+
+-D => instala pacostes de desenvolvimento no projeto. 
+quando eu colocar no ar/em produção algum projeto, as dependencias de desenvolvimento nao vao mais existir. por exemplo, prisma, nodemon, etc.
+ex: npm i nodemon -D
+
+scripts => atalho para rodar algum comando no meu projeto. ex: npm run generate: npx prisma generate
+sempre preciso colocar o npm run
+
+npm start => unico script q o run
+
+Nodemon / --watch (serve para observar os scripts, e quando eu salvo, ele vai rodar o servidor dnv. se eu tiver o node menor q a v.20, eu tenho q instalar o nodemon -D, e para ele executar o projeto com o nodemon, preciso ir no script, colocar "dev": nodemon e o caminho inicial do meu projeto.
+
+Express => framework (conjunto de recursos usado para resolver algum problema). o express é um framework que me ajuda a construir uma API, construindo rotas e devolvendo respostas para as minhas requisições.
+
+Restful => rotas, metodos especificos
+
+Routers => uso o Router para criar as minhas rotas, e uso o app.use para configurar as rotas. o router nao é necesario, porem fica mais simples para organizar.
+
+Metodos => GET: obter alguma informacao
+
+MVC => Padrao de projeto que divide o projeto em 3 camadas.
+Model => regra de negócios e acesso ao banco de dados. Mas dependendo da forma q a equipe organiza o projeto, o banco de dados pode ficar em uma 4 camada
+View => Fazer a interface com o usuário, apresentação das telas e etc. Quem cuida dessa camada é o frontend
+Control => Controlar o fluxo das entradas, processamento e saídas de dados. 
+
+Middleware => também é um padrao de projeto utilizado pelo express, funções intermediárias q representam uma etapa, processamento das entradas de uma API. (fluxo de execução da rota)
+
+desde a entrada ate a saida, é recebido 3 obj chamado res, req, e next
+
+req => tudo q a pessoa q chamou aquela rota mandou. pode ter o body, os headers.
+
+res => objeto para dar resposta ao usuario. res.json dá uma resposta no formato JSON. 
+
+next => faz passar para o proximo middleware, sendo q o proximo tambem recebe a req, res e o next.
+
+normalmente o ultimo middleware é o controller.
+
+posso chamar os meus middleware no meu app.use, entre a rota e o meu controller.
+
+Validação de dados (ZOD) => o zod deve estar no model, pois define as regras de negócio. possui funcoes especiais como .email .url que validam entradas especificas. 
+
+safeParse => pega a entrada e passa por essas regras, devolvendo se deu certo ou nao. porem só me da a resposta pro usuario no meu controller, e nao no meu model.
+
+Partial => exclui alguma informacao da validacao, por exemplo, o ID, que a pessoa nao passa como entrada. O zod vai validar tudo menos o ID. o que for deixado como true, vai ser parcial/opcional.
+
+Prisma => biblioteca do tipo ORM, Object Relational Mapping, cria um objeto no js que representa uma tabela com a minha base de dados. PRISMA.USER => entende que no banco existe uma tabela user com varios campos. Com o schema é mapeado a tabela no meu banco de dados
+
+ORM => objeto q faz um mapeamento/relacionamento de uma base de dados para um código javascript.
+
+se eu ja tiver uma base de dados q ja existe => npx prisma db pull 
+
+se eu ja tenho o modelo e n tenho um banco => npx prisma db push
+
+comando para startar o prisma no projeto que cria o .env, generator client, datasource db=> Prisma init 
+
+antes de dar push ou pull é preciso dar o prisma init
+
+prisma client => dependencia de producao
+prisma normal => dependendica de dev
+
+posso dar um prisma generate (gerado a partir do model) antes de dar um push. pois ele gera a funcao somente com base no modelo.
+
+
